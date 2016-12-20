@@ -34,49 +34,6 @@ checkOS() {
         exit
     fi
 }
-installRemiAndEpel() {
-    dots "Ensuring Remi and Epel repos are installed"
-
-    local useYum=$(command -v yum)
-    local useDnf=$(command -v dnf)
-
-    if [[ "$ID" == "fedora" ]]; then
-        if [[ -e "$useDnf" ]]; then
-            dnf install http://rpms.remirepo.net/fedora/remi-release-${VERSION_ID}.rpm -y > /dev/null 2>&1
-            dnf config-manager --set-enabled remi-php70 > /dev/null 2>&1
-            [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
-        elif [[ -e "$useYum" ]]; then
-            yum install http://rpms.remirepo.net/fedora/remi-release-${VERSION_ID}.rpm -y > /dev/null 2>&1
-            yum config-manager --set-enabled remi-php70 > /dev/null 2>&1
-            [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
-        fi
-    elif [[ "$ID" == "centos" ]]; then
-        if [[ -e "$useDnf" ]]; then
-            dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION_ID}.noarch.rpm -y > /dev/null 2>&1
-            dnf install http://rpms.remirepo.net/enterprise/remi-release-${VERSION_ID}.rpm -y > /dev/null 2>&1
-            [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
-        elif [[ -e "$useYum" ]]; then
-            yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION_ID}.noarch.rpm -y > /dev/null 2>&1
-            yum install http://rpms.remirepo.net/enterprise/remi-release-${VERSION_ID}.rpm -y > /dev/null 2>&1
-            checkOrInstallPackage "yum-utils" "1"
-            yum-config-manager --enable remi-php70 > /dev/null 2>&1
-            [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
-        fi
-    elif [[ "$ID" == "rhel" ]]; then
-        if [[ -e "$useDnf" ]]; then
-            dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION_ID}.noarch.rpm -y > /dev/null 2>&1
-            dnf install http://rpms.remirepo.net/enterprise/remi-release-${VERSION_ID}.rpm -y > /dev/null 2>&1
-            [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
-        elif [[ -e "$useYum" ]]; then
-            yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION_ID}.noarch.rpm -y > /dev/null 2>&1
-            yum install http://rpms.remirepo.net/enterprise/remi-release-${VERSION_ID}.rpm -y > /dev/null 2>&1
-            checkOrInstallPackage "yum-utils" "1"
-            subscription-manager repos --enable=rhel-${VERSION_ID}-server-optional-rpms > /dev/null 2>&1
-            yum-config-manager --enable remi-php70 > /dev/null 2>&1
-            [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
-        fi
-    fi
-}
 checkOrInstallPackage() {
     local package="$1"
     local silent="$2"
@@ -179,15 +136,12 @@ setupFirewalld() {
     fi
 }
 setupDB() {
-    dots "Checking for jane database"
-    janeDBExists=$(mysql -s -N -e "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'jane'")
-    if [[ "$janeDBExists" != "jane" ]]; then
+    dots "Checking for login database"
+    DBExists=$(mysql -s -N -e "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'login'")
+    if [[ "$DBExists" != "login" ]]; then
         echo "Does not exist"
-        dots "Creating jane database"
+        dots "Creating login database"
         mysql < dbcreatecode.sql > /dev/null 2>&1
-        [[ $? -eq 0 ]] && echo "Ok" || echo "Failed"
-        dots "Storing existing users and groups"
-        php $cwd/../service/initialStoreLocalUsersAndGroups.php  > /dev/null 2>&1
         [[ $? -eq 0 ]] && echo "Ok" || echo "Failed"
     else
         echo "Exists"
