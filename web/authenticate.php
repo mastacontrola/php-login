@@ -48,7 +48,7 @@ if ($result->num_rows == 0) {
 						// All done, Send user along.
 						unset($_SESSION['ErrorMessage']);
 						unset($_SESSION['badLoginAttempt']);
-						$NextURL=".php";
+						$NextURL=$home;
 						header("Location: $NextURL");
 
 

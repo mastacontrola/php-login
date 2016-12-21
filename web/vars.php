@@ -11,7 +11,7 @@ $database = 'login';
 $SessionTimeout = 900; // measured in seconds.
 $PasswordDefault = "changeme";
 $SiteName = "MySite";
-
+$home = "home.php"; //This is the home file.
 
 
 // Messages. 

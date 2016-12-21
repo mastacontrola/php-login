@@ -8,14 +8,14 @@ UserID int NOT NULL AUTO_INCREMENT,
 Username VARCHAR(255) NOT NULL UNIQUE,
 Password VARCHAR(255) NOT NULL,
 UserEnabled VARCHAR(1) NOT NULL,
-PRIMARY KEY (JaneUserID)
+PRIMARY KEY (UserID)
 );
 
 CREATE TABLE Sessions(
 SessionID int NOT NULL AUTO_INCREMENT,
 REQUEST_TIME int NOT NULL,
 SessionUserID int NOT NULL,
-FOREIGN KEY (SessionUserID) REFERENCES janeUsers(JaneUserID),
+FOREIGN KEY (SessionUserID) REFERENCES Users(UserID),
 REMOTE_ADDR VARCHAR(255) NOT NULL,
 HTTP_USER_AGENT VARCHAR(255) NOT NULL,
 Random_String VARCHAR(8) NOT NULL,
@@ -54,14 +54,14 @@ ON blockedIPs (BlockedIP);
 
 INSERT INTO globalSettings (settingKey,settingDesc,settingValue) VALUES ('schemaVersion','This is the schema version of the DB. If it is lower than the expected version, conversion automatically happens to bring the DB up to date.','0');
 
-INSERT INTO Users (Username,Password,SMBPassword,UserEnabled) VALUES ('user','$2y$10$UivHA1lp.4e7fEDj.C6h9eWCGctGQtV3wlsJqaqTDMTih5ukDTaTi','changeme','1');
+INSERT INTO Users (Username,Password,UserEnabled) VALUES ('user','$2y$10$UivHA1lp.4e7fEDj.C6h9eWCGctGQtV3wlsJqaqTDMTih5ukDTaTi','1');
 
 CREATE USER 'web'@'localhost' IDENTIFIED BY 'webpassword';
 
 GRANT ALL ON login.blockedIPs TO 'web'@'localhost';
 GRANT ALL ON login.Sessions TO 'web'@'localhost';
 GRANT ALL ON login.badLoginAttempts TO 'web'@'localhost';
-GRANT ALL ON login.janeUsers TO 'web'@'localhost';
+GRANT ALL ON login.Users TO 'web'@'localhost';
 GRANT ALL ON login.globalSettings TO 'web'@'localhost';
 
 
