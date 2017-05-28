@@ -8,6 +8,13 @@ placeFiles() {
     dots "Updating web files"
     rm -f /var/www/html/*
     cp ${cwd}/../web/* /var/www/html
+    source "/etc/os-release"
+    if [[ "$ID" == "centos" || "$ID" == "rhel" || "$ID" == "fedora" ]]; then
+        webpermissions="apache:apache"
+    elif [[ "$ID" == "debian" ]]; then
+        webpermissions="www-data:www-data"
+    fi
+    chown -R $webpermissions /var/www/html
     echo "Done"
 }
 updateServer() {
