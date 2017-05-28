@@ -4,6 +4,12 @@ dots() {
     printf " * %s%*.*s" "$1" 0 $((60-${#1})) "$pad"
     return 0
 }
+placeFiles() {
+    dots "Updating web files"
+    rm -f /var/www/html/*
+    cp ${cwd}/../web/* /var/www/html
+    echo "Done"
+}
 updateServer() {
     dots "Updating system, this could take a while"
     local useYum=$(command -v yum)

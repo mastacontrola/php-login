@@ -9,3 +9,4 @@ checkOS
 updateServer
 checkOrInstallPackages "0"
 setupDB
+placeFiles
