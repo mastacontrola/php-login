@@ -61,7 +61,7 @@ if ($result->num_rows == 0) {
 			// All done, Send user along.
 			$SessionIsVerified="1";
 			// Determine if it's an administrator or not.
-			$sql = "SELECT uID FROM UserGroupAssociation WHERE uID = '$UserID' AND gID = (SELECT GroupID FROM Groups WHERE GroupName = 'administrators') LIMIT 1";
+			$sql = "SELECT UserID FROM Users WHERE UserID = '$UserID' AND IsAdmin = '1' LIMIT 1";
 			$result = $link->query($sql);
 			if ($result->num_rows == 1) {
 				$isAdministrator = "1";
