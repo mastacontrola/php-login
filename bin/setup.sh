@@ -10,3 +10,10 @@ updateServer
 checkOrInstallPackages "0"
 setupDB
 placeFiles
+
+echo ' '
+echo ' '
+echo 'Default user:pass is:'
+echo 'user'
+echo 'changeme'
+echo ' '
