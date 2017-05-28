@@ -51,17 +51,17 @@ checkOrInstallPackages() {
     local useDnf=$(command -v dnf)
     local useAptGet=$(command -v apt-get)
     if [[ -e "$useDnf" ]]; then
-        dnf install "$rhelPackages" -y > /dev/null 2>&1
+        dnf -y install "$rhelPackages" > /dev/null 2>&1
         if [[ "$silent" -eq 0 ]]; then
             [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
         fi
     elif [[ -e "$useYum" ]]; then
-        yum install "$rhelPackages" -y > /dev/null 2>&1
+        yum -y install "$rhelPackages" > /dev/null 2>&1
         if [[ "$silent" -eq 0 ]]; then
             [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
         fi
     elif [[ -e "$useAptGet" ]]; then
-        apt-get install "$debianPackages" -y > /dev/null 2>&1
+        apt-get -y install "$debianPackages" > /dev/null 2>&1
         if [[ "$silent" -eq 0 ]]; then
             [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
         fi
