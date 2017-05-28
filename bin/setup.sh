@@ -12,13 +12,6 @@ checkOrInstallPackage "mariadb-server" "0"
 checkOrInstallPackage "php" "0"
 checkOrInstallPackage "httpd" "0"
 checkOrInstallPackage "php-mysqlnd" "0"
-checkOrInstallPackage "firewalld" "0"
-checkOrInstallPackage "ntp" "0"
-checkOrInstallPackage "lsof" "0"
-startAndEnableService "firewalld"
-setupFirewalld
-startAndEnableService "ntpd"
-setTimezone "America/Chicago"
 startAndEnableService "httpd"
 startAndEnableService "mysql"
 setupDB
