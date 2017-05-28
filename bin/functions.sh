@@ -43,7 +43,6 @@ checkOrInstallPackages() {
     local rhelPackages="mariadb-server php httpd php-mysqlnd"
     local debianPackages="mysql-client mysql-common mysql-server apache2 libapache2-mod-php5 php5 php5-common php5-cli php5-mysql php5-mcrypt"
     local silent="$1"
-    local packageLocation=""
     if [[ "$silent" -eq 0 ]]; then
         dots "Installing package $package"
     fi
@@ -51,17 +50,17 @@ checkOrInstallPackages() {
     local useDnf=$(command -v dnf)
     local useAptGet=$(command -v apt-get)
     if [[ -e "$useDnf" ]]; then
-        dnf -y install "$rhelPackages" > /dev/null 2>&1
+        dnf -y install $rhelPackages > /dev/null 2>&1
         if [[ "$silent" -eq 0 ]]; then
             [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
         fi
     elif [[ -e "$useYum" ]]; then
-        yum -y install "$rhelPackages" > /dev/null 2>&1
+        yum -y install $rhelPackages > /dev/null 2>&1
         if [[ "$silent" -eq 0 ]]; then
             [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
         fi
     elif [[ -e "$useAptGet" ]]; then
-        apt-get -y install "$debianPackages" > /dev/null 2>&1
+        apt-get -y install $debianPackages > /dev/null 2>&1
         if [[ "$silent" -eq 0 ]]; then
             [[ $? -eq 0 ]] && echo "Installed" || echo "Failed"
         fi
