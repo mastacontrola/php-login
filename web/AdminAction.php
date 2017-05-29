@@ -33,7 +33,6 @@ if ($SessionIsVerified == "1") {
 		
 
 		$uID = $link->real_escape_string(trim($_REQUEST['uID']));
-		$gID = $link->real_escape_string(trim($_REQUEST['gID']));
 
 
 		//Strip spaces
@@ -102,40 +101,6 @@ if ($SessionIsVerified == "1") {
 				if (isset($uID)) {
 					$NewPassword = password_hash($PasswordDefault, PASSWORD_DEFAULT);
 					$sql = "UPDATE `Users` SET `Password` = '$NewPassword' WHERE `UserID` = $uID";
-					doQuery();
-				} else {
-                                        setMessage($incomplete,"AdminActionPage.php");
-                                }
-				break;
-			case $CreateNewGroup:
-				if (isset($adminActionText)) {
-					$sql = "INSERT INTO `Groups` (`GroupName`) VALUES ('$adminActionText')";
-					doQuery();
-				} else {
-                                        setMessage($incomplete,"AdminActionPage.php");
-                                }
-				break;
-			case $DeleteSelectedGroup:
-				if (isset($gID)) {
-					$sql = "DELETE FROM `UserGroupAssociation` WHERE `gID` = '$gID'";
-					doQuery();
-					$sql = "DELETE FROM `Groups` WHERE `GroupID` = '$gID'";
-					doQuery();
-				} else {
-                                        setMessage($incomplete,"AdminActionPage.php");
-                                }
-				break;
-			case $AddSelectedUserToSelectedGroup:
-				if (isset($gID, $uID)) {
-					$sql = "INSERT INTO UserGroupAssociation (uID,gID) VALUES ($uID,$gID)";
-					doQuery();
-				} else {
-                                        setMessage($incomplete,"AdminActionPage.php");
-                                }
-				break;
-			case $RemoveSelectedUserFromSelectedGroup:
-				if (isset($gID, $uID)) {
-					$sql = "DELETE FROM `UserGroupAssociation` WHERE `uID` = '$uID' AND `gID` = '$gID'";
 					doQuery();
 				} else {
                                         setMessage($incomplete,"AdminActionPage.php");
