@@ -9,7 +9,7 @@ if ($SessionIsVerified == "1") {
 
 
                 if ($link->query($sql)) {
-                        // good, send back to jane.php
+                        // good, send back to home.php
                         $NextURL="login.php";
                         header("Location: $NextURL");
                 } else {
