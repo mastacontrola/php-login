@@ -81,6 +81,7 @@ echo "<body>\n";
 
 echo "<ul>\n";
 echo "  <li><a class=\"active\" href=\"home.php\">Home</a></li>\n";
+echo "  <li><a class=\"active\" href=\"UploadPage.php\">Upload</a></li>\n";
 echo "  <li class=\"dropdown\">\n";
 echo "    <a href=\"#\" class=\"dropbtn\">Account Options</a>\n";
 echo "    <div class=\"dropdown-content\">\n";
@@ -93,7 +94,6 @@ if ($isAdministrator == 1) {
     echo "    <a href=\"#\" class=\"dropbtn\">Administrator Actions</a>\n";
     echo "    <div class=\"dropdown-content\">\n";
     echo "      <a href=\"AdminActionPage.php\">User and IP Management</a>\n";
-    echo "      <a href=\"UploadPage.php\">Upload File</a>\n";
     echo "    </div>\n";
     echo "   </li>\n";
         

@@ -55,7 +55,7 @@ ON blockedIPs (BlockedIP);
 
 INSERT INTO globalSettings (settingKey,settingDesc,settingValue) VALUES ('schemaVersion','This is the schema version of the DB. If it is lower than the expected version, conversion automatically happens to bring the DB up to date.','0');
 
-INSERT INTO Users (Username,Password,UserEnabled,IsAdmin) VALUES ('user','$2y$10$UivHA1lp.4e7fEDj.C6h9eWCGctGQtV3wlsJqaqTDMTih5ukDTaTi','1','1');
+INSERT INTO Users (Username,Password,UserEnabled,IsAdmin) VALUES ('admin','$2y$10$UivHA1lp.4e7fEDj.C6h9eWCGctGQtV3wlsJqaqTDMTih5ukDTaTi','1','1');
 
 CREATE USER 'web'@'localhost' IDENTIFIED BY 'webpassword';
 
