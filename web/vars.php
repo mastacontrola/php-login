@@ -32,6 +32,25 @@ date_default_timezone_set($TimeZone);
 
 
 
+$adminActionNames = array();
+$AddNewUser = "Add New User";
+$adminActionNames[] = $AddNewUser;
+$DeleteSelectedUser = "Delete Selected User";
+$adminActionNames[] = $DeleteSelectedUser;
+$EnableSelectedUser = "Enable Selected User";
+$adminActionNames[] = $EnableSelectedUser;
+$DisableSelectedUser = "Disable Selected User";
+$adminActionNames[] = $DisableSelectedUser;
+$ResetSelectedUsersJanePassword = "Reset Selected Users Jane Password to $PasswordDefault";
+$adminActionNames[] = $ResetSelectedUsersJanePassword;
+$ResetSelectedUsersSMBPassword = "Reset Selected Users SMB Password to $PasswordDefault";
+$adminActionNames[] = $ResetSelectedUsersSMBPassword;
+$BlockIP = "Block IP";
+$adminActionNames[] = $BlockIP;
+$UnblockIP = "Unblock IP";
+$adminActionNames[] = $UnblockIP;
+
+
 
 
 ?>

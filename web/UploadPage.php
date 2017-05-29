@@ -8,7 +8,7 @@ if ($SessionIsVerified == "1") {
 		
 		echo "<div>";
 		echo "<br><br>";
-		echo "<form action=\"upload.php\" method=\"post\" enctype=\"multipart/form-data\">";
+		echo "<form action=\"Upload.php\" method=\"post\" enctype=\"multipart/form-data\">";
 		echo "Select file to upload:<br>";
 		echo "<input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\"><br><br>";
 		echo "<input type=\"submit\" value=\"Upload\" name=\"submit\">";

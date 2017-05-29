@@ -6,10 +6,10 @@ if ($SessionIsVerified == "1") {
     include 'head.php';
 
     if ($isAdministrator == 1) {
-        echo "<title>User, Group, and IP Management</title>";
+        echo "<title>User and IP Management</title>";
         echo "<div>";
         echo "<form action=\"AdminAction.php\" method=\"post\">";
-        echo "User, Group, and IP Management<br>";
+        echo "User and IP Management<br>";
         echo "<p class=\"tab\">";
 
 
@@ -17,8 +17,6 @@ if ($SessionIsVerified == "1") {
         echo "<br>";
 
 
-        $GroupIDs = array();
-        $GroupNames = array();
         $UserIDs = array();
         $UserNames = array();
 
@@ -38,21 +36,6 @@ if ($SessionIsVerified == "1") {
         }
         echo "</select>";
 
-        echo "<select name='gID'>";
-        echo "<option value=''>Pick Group</option>";
-        $sql = "SELECT `GroupID`,`GroupName` from `Groups`";
-        $result = $link->query($sql);
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                echo "<option value='" . trim($row['GroupID']) . "'>" . trim($row['GroupName']) . "</option>";
-                $GroupIDs[] = trim($row['GroupID']);
-                $GroupNames[] = trim($row['GroupName']);
-            }
-            $result->free();
-        } else {
-            echo "<option value='no_groups'>no_settings</option>";
-        }
-        echo "</select><br>";
         echo "<br>";
 
         $i = 0;

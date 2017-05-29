@@ -92,9 +92,8 @@ if ($isAdministrator == 1) {
     echo "    <li class=\"dropdown\">\n";
     echo "    <a href=\"#\" class=\"dropbtn\">Administrator Actions</a>\n";
     echo "    <div class=\"dropdown-content\">\n";
-    echo "      <a href=\"AdminActionPage.php\">User, Group, and IP Management</a>\n";
-    echo "      <a href=\"exportDBPage.php\">Export Database</a>\n";
-    echo "      <a href=\"importDBPage.php\">Import Database</a>\n";
+    echo "      <a href=\"AdminActionPage.php\">User and IP Management</a>\n";
+    echo "      <a href=\"UploadPage.php\">Upload File</a>\n";
     echo "    </div>\n";
     echo "   </li>\n";
         
