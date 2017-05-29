@@ -14,6 +14,6 @@ placeFiles
 echo ' '
 echo ' '
 echo 'Default user:pass is:'
-echo 'user'
+echo 'admin'
 echo 'changeme'
 echo ' '
